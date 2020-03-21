@@ -1,0 +1,43 @@
+{% extends 'headbranch/basic.html' %}
+{% block title %} IBank Head Branch {% endblock %}
+{% block body %}
+<div class="container">
+    {% if hb_auth == True %}
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-6">
+                <h2>{{ bcount }} Branches</h2>
+            </div>
+            <div class="col-6">
+                <h2>{{ bbalance }}  /<sub>{{ total }}</sub></h2>
+
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col-md-4 col-12"></div>
+        <div class="col-sm-4 col-12">
+            <form action="login" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">
+                        username
+                    </label>
+                    <input type="text" name="username" class="form-control" id="username" />
+                </div>
+                <div class="form-group">
+                    <label for="password">
+                        Password
+                    </label>
+                    <input type="text" name="password" class="form-control" id="password" />
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
